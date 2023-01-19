@@ -37,6 +37,34 @@ actions.totalAge = {
     }
 };
 
+// returns sårbarhed of a single product
+actions.productVulnerability = {
+    types: [Number, Number, Number],
+    function: function(disruptive, irreplacible, damaging){
+            var average = (disruptive + irreplacible + damaging) / 3;
+            var index = Math.floor(average - 1);
+            var categories = ("Ikke Krtisik", "Lav Sårbarhed", "Besværlig", "Sårbar", "Kritisk")
+        return categories[index];
+    }
+   }
+   // returns 'sårbarhed' of the three products in an array
+   // each product has properties disruptive, irreplacible, and damaging,
+   actions.vulnerability = {
+    types: [JSON.parse, JSON.parse, JSON.parse],
+    function: function(p1, p2, p3){
+        var products = [p1,p2,p3];
+        var result=["FEJL","FEJL","FEJL"];
+        for (var i = 0;i<products.length;i++)
+            var currentProduct =products[i]
+            result[i]=actions.productVulnerability.function(
+                currentProduct.disruptive, 
+                currentProduct.irreplacible, 
+                currentProduct.damaging
+            )
+        
+        return result;
+    }
+   };
 //returns the average age of the three persons
 actions.averageAge = {
     types: [JSON.parse, JSON.parse, JSON.parse],
