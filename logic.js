@@ -33,7 +33,7 @@ actions.totalAge = {
 actions.averageAge = {
     types: [JSON.parse, JSON.parse, JSON.parse],
     function: function(alice, bob, cat){
-        return -1;
+        return ((alice+bob+cat)/3);
     }
 };
 
