@@ -43,7 +43,7 @@ actions.productVulnerability = {
     function: function(disruptive, irreplacible, damaging){
             var average = (disruptive + irreplacible + damaging) / 3;
             var index = Math.floor(average - 1);
-            var categories = ("Ikke Krtisik", "Lav Sårbarhed", "Besværlig", "Sårbar", "Kritisk")
+            var categories = ["Ikke Kritisk", "Lav Sårbarhed", "Besværlig", "Sårbar", "Kritisk"]
         return categories[index];
     }
    }
@@ -54,14 +54,14 @@ actions.productVulnerability = {
     function: function(p1, p2, p3){
         var products = [p1,p2,p3];
         var result=["FEJL","FEJL","FEJL"];
-        for (var i = 0;i<products.length;i++)
+        for (var i = 0;i<products.length;i++){
             var currentProduct =products[i]
             result[i]=actions.productVulnerability.function(
                 currentProduct.disruptive, 
                 currentProduct.irreplacible, 
                 currentProduct.damaging
             )
-        
+            }
         return result;
     }
    };
